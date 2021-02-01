@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn1">点击</button>
+  <button id="btn2">点击</button>
+  <script>
+    document.querySelector('#btn1').onclick = function() {
+      this.disabled = true
+      setTimeout(function() {
+        this.disabled = false
+      }.bind(this), 1000)
+    }
+    document.querySelector('#btn2').onclick = function() {
+      this.disabled = true
+      setTimeout(() => this.disabled = false, 1000)
+    }
+  </script>
+</body>
+</html>

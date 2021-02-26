@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      constructor(name) {
+        this.name = name
+      }
+      getPerson() {
+        console.log('person...')
+      }
+    }
+    class User extends Person {
+      constructor(name, age) {
+        super(name)
+        this.age = age
+      }
+      getUser() {
+        console.log('user...')
+      }
+    }
+    class Student extends User {
+      constructor(name, age) {
+        super(name, age)
+      }
+      getStudent() {
+        console.log('student...')
+      }
+    }
+    let person = new Person()
+    let user = new User()
+    let student = new Student()
+
+    function Teacher(name, age) {
+      this.name = name
+      this.age = age
+    }
+    Teacher.prototype.getTeacher = function () {
+      console.log('getTeacher...')
+    }
+    function Andy(name, age) {
+      Teacher.call(this, name, age)
+    }
+    Andy.prototype = new Teacher()
+    Andy.prototype.constructor = Andy
+    Andy.prototype.getAndy = function () {
+      console.log('getAndy...')
+    }
+    let andy = new Andy()
+  </script>
+</body>
+
+</html>

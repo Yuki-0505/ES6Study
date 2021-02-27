@@ -54,6 +54,10 @@
       console.log('getAndy...')
     }
     let andy = new Andy()
+
+    // hasOwnProperty 检查当前对象上是否有某属性，不会沿着原型链查找
+    console.log(andy.hasOwnProperty('name'))
+    console.log(user.__proto__.hasOwnProperty('getUser'))
   </script>
 </body>
 

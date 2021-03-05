@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * resolve
+     * 参数为非Promise对象返回为成功的Promise，结果PromiseResult为参数
+     * 否则由参数状态决定
+     */
+    let p1 = Promise.resolve(520)
+    let p2 = Promise.resolve(new Promise((resolve, reject) => {
+      resolve(520)
+    }))
+    console.log(p1)
+    console.log(p2)
+
+    /**
+     * reject
+     * 返回的永远是一个失败的Promise对象
+     */
+    let p3 = Promise.reject(new Promise((resolve, reject) => {
+      resolve(520)
+    }))
+    console.log(p3)
+    p3.catch(err => { })
+
+    /**
+     * all
+     * 参数为Promise数组
+     * 所有的Promise都成功则返回成功的Promise，结果为数组
+     * 若有一个失败则失败，结果为失败的Promise的结果
+     */
+    let p4 = new Promise((resolve, reject) => {
+      setTimeout(function () {
+        resolve('Ok.')
+      }, 1000)
+    })
+    let p5 = Promise.resolve('Success.')
+    let p6 = Promise.resolve('Oh Yeah.')
+    const all = Promise.all([p4, p5, p6])
+    console.log(all)
+
+    /**
+     * race
+     * 参数为Promise数组
+     * 第一个完成的Promise决定最终状态
+     */
+    const race = Promise.race([p4, p5, p6])
+    console.log(race)
+  </script>
+</body>
+
+</html>

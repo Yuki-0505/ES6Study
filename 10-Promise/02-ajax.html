@@ -10,6 +10,14 @@
 <body>
   <button>发送请求</button>
   <script>
+    /**
+     * readState
+     * 0 创建xhr
+     * 1 建立连接 open()
+     * 2 发送 send()
+     * 3 客户端正在接收
+     * 4 响应完成
+     */
     const btn = document.querySelector('button')
     btn.addEventListener('click', function (e) {
       const p = new Promise((resolve, reject) => {
@@ -19,7 +27,7 @@
         xhr.send()
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4) {
-            if (xhr.status <= 200 && xhr.status <= 300) {
+            if (xhr.status >= 200 && xhr.status <= 300) {
               resolve(xhr.response)
             } else {
               reject(xhr.status)
